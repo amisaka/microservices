@@ -1,0 +1,25 @@
+version: '3'
+services:
+    server:
+        build: 
+            dockerfile: Dockerfile
+            context: ./rotten-potatoes-ma/src
+        volumes:
+            - /app/node_modules 
+            - ./server:/app
+        ports:
+          - '5000:5000'
+    movie:
+        restart: always
+        build: 
+          dockerfile: Dockerfile
+          context: ./movie/src
+        volumes:
+            - /app/node_modules 
+            - ./movie:/app
+    review: 
+        build: 
+            dockerfile: Dockerfile
+            context: ./review/src
+
+
